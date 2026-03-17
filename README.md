@@ -18,12 +18,3 @@ A principal implementação recente foi a criação da **Página de Detalhes**, 
 * **JavaScript (ES6+):** - Consumo de API Assíncrona (`fetch`, `async/await`).
   - Manipulação de DOM para renderização dinâmica.
   - Uso de `URLSearchParams` para navegação entre páginas.
-
-## 📸 Demonstração
-*(Dica: Tire um print do seu Bulbasaur finalizado e coloque o arquivo na pasta 'img' do seu projeto para exibir aqui)*
-![Página de Detalhes do Bulbasaur](./assets/img/demo-detail.png)
-
-## 🏗️ Como rodar o projeto
-1. Clone este repositório:
-   ```bash
-   git clone [https://github.com/mateuscardosodebrito-ctrl/js-developer-pokedex.git](https://github.com/mateuscardosodebrito-ctrl/js-developer-pokedex.git)
