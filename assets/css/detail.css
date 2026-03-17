@@ -1,0 +1,144 @@
+
+body {
+    background-color: #f6f8fc;
+    margin: 0;
+    font-family: 'Roboto', sans-serif;
+    display: flex;
+    justify-content: center;
+}
+
+.detail-page {
+    width: 100%;
+    max-width: 1000px; 
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    margin: 0 auto;
+}
+
+.header {
+    padding: 40px 25px 120px; 
+    position: relative;
+}
+
+.header .back-button {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 1.8rem;
+    cursor: pointer;
+    margin-bottom: 15px;
+}
+
+.header .title-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: white;
+}
+
+.header h1 {
+    text-transform: capitalize;
+    font-size: 2.2rem;
+    margin: 0;
+}
+
+.header .number {
+    font-weight: bold;
+    font-size: 1.1rem;
+}
+
+.header .types {
+    display: flex;
+    gap: 8px;
+    margin-top: 10px;
+}
+
+.header .type {
+    padding: 5px 15px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    color: white;
+    background: rgba(255, 255, 255, 0.2); 
+}
+
+
+.header img {
+    width: 220px;
+    position: absolute;
+    bottom: -40px; 
+    left: 60%;
+    transform: translateX(-50%);
+    z-index: 10;
+}
+
+.details-container {
+    background: white;
+    flex: 1;
+    border-top-left-radius: 40px;
+    border-top-right-radius: 40px;
+    margin-top: -30px; 
+    padding: 150px 100px 80px; 
+    position: relative;
+    z-index: 5;
+}
+
+
+.section-title {
+    margin: 40px 0 20px; 
+    font-weight: bold;
+    font-size: 1.1rem;
+    color: #333;
+}
+
+.tabs {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 35px; 
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.tabs span {
+    padding-bottom: 12px;
+    color: #bdc3c7;
+    font-weight: bold;
+    font-size: 0.9rem;
+    cursor: pointer;
+}
+
+.tabs .active {
+    color: #333;
+    border-bottom: 2px solid #6c79db;
+}
+
+table.info-table {
+    width: 100%;
+    max-width: 400px; 
+    border-spacing: 0 18px; 
+    margin-top: 10px;
+}
+
+
+.info-table td.label {
+    color: #aeaeae; 
+    width: 120px;   
+    font-weight: 500;
+    font-size: 0.95rem;
+    vertical-align: top;
+}
+
+
+.info-table td.value {
+    color: #333;
+    font-weight: 600; 
+    font-size: 0.95rem;
+    padding-left: 10px; 
+}
+
+.section-title {
+    margin: 30px 0 15px;
+    font-weight: bold;
+    font-size: 1.1rem;
+    color: #333;
+}

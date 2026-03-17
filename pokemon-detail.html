@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detalhes do Pokémon</title>
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;500;700&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="assets/css/global.css">
+    <link rel="stylesheet" href="assets/css/pokedex.css">
+    <link rel="stylesheet" href="assets/css/detail.css">
+</head>
+<body>
+
+    <div id="pokemon-content">
+        </div>
+
+    <script src="assets/js/pokemon-model.js"></script>
+    <script src="assets/js/poke-api.js"></script>
+    
+    <script>
+        const contentArea = document.getElementById('pokemon-content');
+        const urlParams = new URLSearchParams(window.location.search);
+        const pokemonId = urlParams.get('id');
+
+        if (!pokemonId) {
+            window.location.href = 'index.html';
+        } else {
+            window.addEventListener('load', () => loadPokemonDetails(pokemonId));
+        }
+
+        async function loadPokemonDetails(id) {
+            try {
+                const [pokemon, species] = await Promise.all([
+                    pokeApi.getPokemonDetailById(id),
+                    pokeApi.getPokemonSpecies(id)
+                ]);
+                renderPokemon(pokemon, species);
+            } catch (error) {
+                console.error(error);
+                contentArea.innerHTML = "<h2>Erro ao carregar detalhes.</h2>";
+            }
+        }
+
+        function renderPokemon(pokemon, species) {
+            const femaleRate = species.gender_rate === -1 ? 0 : (species.gender_rate / 8) * 100;
+            const maleRate = species.gender_rate === -1 ? 0 : 100 - femaleRate;
+
+            contentArea.innerHTML = `
+                <div class="detail-page ${pokemon.type}">
+                    <div class="header">
+                        <button class="back-button" onclick="window.history.back()">←</button>
+                        <div class="title-row">
+                            <h1>${pokemon.name}</h1>
+                            <span class="number">#${pokemon.number.toString().padStart(3, '0')}</span>
+                        </div>
+                        <div class="types">
+                            ${pokemon.types.map(t => `<span class="type ${t}">${t}</span>`).join('')}
+                        </div>
+                        <img src="${pokemon.photo}" alt="${pokemon.name}">
+                    </div>
+
+                    <div class="details-container">
+                        <nav class="tabs">
+                            <span class="active">About</span>
+                            <span>Base Stats</span>
+                            <span>Evolution</span>
+                            <span>Moves</span>
+                        </nav>
+
+                        <table class="info-table">
+                            <tr><td class="label">Species</td><td class="value">Seed Pokémon</td></tr>
+                            <tr><td class="label">Height</td><td class="value">${pokemon.height / 10} m</td></tr>
+                            <tr><td class="label">Weight</td><td class="value">${pokemon.weight / 10} kg</td></tr>
+                            <tr><td class="label">Abilities</td><td class="value">${pokemon.abilities.join(', ')}</td></tr>
+                        </table>
+
+                        <h2 class="section-title">Breeding</h2>
+                        <table class="info-table">
+                            <tr><td class="label">Gender</td><td class="value">♂ ${maleRate}% ♀ ${femaleRate}%</td></tr>
+                            <tr><td class="label">Egg Groups</td><td class="value">${species.egg_groups.map(g => g.name).join(', ')}</td></tr>
+                            <tr><td class="label">Egg Cycle</td><td class="value">${species.hatch_counter} steps</td></tr>
+                        </table>
+                    </div>
+                </div>
+            `;
+        }
+    </script>
+</body>
+</html>
